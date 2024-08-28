@@ -207,3 +207,197 @@ echo $dosen1->tampilkanDosen();
 ```
 ![image](https://github.com/user-attachments/assets/915c4341-8c4c-4d6c-b6a6-760b2197c2c2)
 
+
+## MODUL 2
+### JOBSHEET 2
+### 1. Membuat Class dan Object
+seperti penjelasan di awal class merupakan sebuah template sementara object adalah inisialisasi dari class itu sendiri. 
+```php
+class Mahasiswa {
+}
+```
+di dalam class ini kita bisa menambahkan beberapa fungsi, yaitu yang pertama kita bisa menambahkan fungsi construct untuk dapat menginisialisasi suatu objek. 
+```php
+public function __construct($nama, $nim, $jurusan){
+        $this->nama = $nama;
+        $this->nim = $nim;
+        $this->jurusan = $jurusan;
+    }
+```
+setelah kita sudah menambahkan fungsi construct kita bisa menambahkan fungsi atau metode untuk menampilkan sebuah data, dengan menggunakan perintah berikut :
+```php
+public function tampilData(){
+        return "Nama: $this->nama, Nim: $this->nim, Jurusan: $this->jurusan";
+    }
+```
+setelah kedua fungsi atau metode tersebut terbuat maka kita bisa membuat sebuah objek dari kelas mahasiswa tersebut dengan menggunakan perintah
+```php
+$mahasiswa1 = new mahasiswa("Rizki Khomsatun B", "230102022", "Komputer dan Bisnis");
+```
+kemudian kita bisa memanggil data tersebut untuk ditampilkan dengan menggunakan perintah
+```php
+echo $mahasiswa1->tampilData();
+```
+setelah melakukan langkah langkah yang telah dijelaskan maka akan menghasilkan full code seperti berikut 
+```php
+<?php
+class mahasiswa{
+    //properti yang ada di dalam kelas mahasiswa
+    public $nama;
+    public $nim;
+    public $jurusan;
+
+    public function __construct($nama, $nim, $jurusan){
+        $this->nama = $nama;
+        $this->nim = $nim;
+        $this->jurusan = $jurusan;
+    }
+    public function tampilData(){
+        return "Nama: $this->nama, Nim: $this->nim, Jurusan: $this->jurusan";
+    }
+}
+$mahasiswa1 = new mahasiswa("Rizki Khomsatun B", "230102022", "Komputer dan Bisnis");
+echo $mahasiswa1->tampilData();
+?>
+```
+(GAMBAR HASIL)
+
+
+### 2. Membuat Encapsulation
+Encapsulation merupakan menyembunyikan detail implementasi dan hanya memberikan akses melalui metode tertentu. lebih singkatnya encapsulation berguna untuk melindungi dan membatasi akses. Dalam encapsulation terdapat visibilitas public, protected, dan privat.
+
+a. Public itu sendiri bisa di akses oleh semua pengguna
+```php
+public $nama;
+```
+
+b. Protected bisa di akses oleh kelas itu sendiri dan kelas turunannya. 
+```php
+protected $nama;
+```
+
+c. Private hanya bisa di akses oleh kelas itu sendiri. 
+```php
+private $nama;
+```
+visibilitas akses protected dan private harus menggunakan fungsi atau metode getter dan setter untuk dapat mengambil nilai dan mengubahnya. 
+
+Metode getter dapat digunakan untuk mengambil atau mendapatkan nilai dari sebuah properti yang memiliki visibilitas protected dan private. 
+```php
+public function getNama(){
+        return $this->nama;
+    }
+```
+sementara untuk mengubah atau mengatur sebuah nilai suatu properti yang memiliki visibilitas protected dan private
+```php
+public function setNama($nama){
+        $this->nama = $nama;
+    }
+```
+setelah kita melakukan pengkodingan full maka kita akan membuat instansiasi objek pada kelas tersebut, dengan contoh 
+```php
+$mahasiswa1 = new mahasiswa ("Rizki Khomsatun Barokah - ", "230102022 - ", "Komputer dan Bisnis");
+```
+berikut contoh full Code untuk mendeskripsikan encapsulation
+```php
+<?php
+class mahasiswa{
+    private $nama;
+    private $nim;
+    private $jurusan;
+
+    public function __construct($nama, $nim, $jurusan){
+        $this->nama = $nama;
+        $this->nim = $nim;
+        $this->jurusan = $jurusan;
+    }
+    public function getNama(){
+        return $this->nama;
+    }
+    public function setNama($nama){
+        $this->nama = $nama;
+    }
+    public function getNim(){
+        return $this->nim;
+    }
+    public function setNim($nim){
+        $this->nim = $nim;
+    }
+    public function getJurusan(){
+        return $this->jurusan;
+    }
+    public function setJurusan($jurusan){
+        $this->jurusan = $jurusan;
+    }
+}
+$mahasiswa1 = new mahasiswa ("Rizki Khomsatun Barokah - ", "230102022 - ", "Komputer dan Bisnis");
+echo $mahasiswa1->getNama() , $mahasiswa1->getNim() , $mahasiswa1->getJurusan();
+?>
+```
+(GAMBAR HASIL)
+
+### 3. Membuat Inheritance
+Inheritance biasanya dikenal dengan pewarisan yaitu kelas dapat mewarisi properti dan metode dari kelas lainnya. Dengan inheritance, kita dapat membuat kelas baru yang memiliki semua karakteristik dari kelas yang sudah ada (kelas induk), sambil menambahkan atau mengubah fitur tambahan. Dalam Inheritance kita memiliki sebuah kelas yang menjadi induk dari kelas lain yang menjadi kelas anak. Ciri- ciri dari kelas anak atau biasa dikenal dengan kelas turunan yaitu dengan adanya kata extends yang menandakan bahwa kelas itu merupakan kelas turunan dari kelas sebelumnya. 
+```php
+class Dosen extends Pengguna{
+}
+```
+Kelas anak atau kelas turunan dapat menambahkan properti dan metode baru selain yang diwarisi dari kelas induk. Jadi, kelas turunan masih bisa menjadi dirinya sendiri selain mereka mendapatkan apa yang dimiliki oleh induknya. sebagai contoh 
+```php
+class Dosen extends Pengguna{
+      private $mataKuliah;
+      public function getMatakuliah(){
+          return $this->mataKuliah;
+    }
+}
+```
+untuk melakukan pemanggilan metode yang diwariskan oleh induk maka bisa menggunakan perintah sebagai berikut:
+```php
+public function __construct($nama, $mataKuliah){
+        parent:: __construct($nama);
+        $this->mataKuliah = $mataKuliah;
+    }
+```
+Dalam code tersebut terdapat 
+
+parent:: __construct ($nama, $mataKuliah)
+
+parent:: __construct itu adalah untuk memanggil metode yang di wariskan oleh induknya, kemudian untuk parameter $nama adalah warisan dari sang induk juga. Sementara Parameter $mataKuliah merupakan properti baru yang ada di dalam kelas turunan tersebut.
+
+sebagai contoh full code beserta outputnya :
+```php
+
+<?php
+class pengguna {
+    //properti iyang dimlindungi dalam kelas pengguna
+    protected $nama;
+
+    public function __construct($nama){
+        $this->nama = $nama;
+    }
+    public function getNama(){
+        return $this->nama;
+    }
+}
+
+class dosen extends pengguna {
+    //properti private yang ada di dalam kelas dosen
+    private $mataKuliah;
+
+    public function __construct($nama, $mataKuliah){
+        parent:: __construct($nama);
+        $this->mataKuliah = $mataKuliah;
+    }
+    public function getMatakuliah(){
+        return $this->mataKuliah;
+    }
+}
+$dosen1 = new dosen ("Rizki Khomsatun B", "PWeb2");
+echo $dosen1->getNama();
+echo "<br/>";
+echo $dosen1->getMatakuliah();
+?>
+```
+
+(GAMBAR HASIL)
+
