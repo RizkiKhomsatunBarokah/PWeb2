@@ -32,7 +32,7 @@ $mahasiswa1 = new Mahasiswa("Rizki Khomsatun B", "230102022", "Teknik Informatik
 echo "Data sebelum perubahan jurusan:<br>";
 $mahasiswa1->tampilkanData();
 
-// mengubah jurusan
+// mengubah nim
 $mahasiswa1->setNim("230102021");
 
 // menampilkan data setelah pengubahan

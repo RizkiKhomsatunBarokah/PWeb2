@@ -8,7 +8,8 @@ class mahasiswa{
 
     //metode untuk menampilkan sebuah data
     public function tampilData(){
-        echo "Nama: $this->nama, dengan nomor Nim $this->nim, dan jurusan  $this->jurusan.";
+        echo "Nama: $this->nama, dengan nomor Nim $this->nim, 
+        dan jurusan  $this->jurusan.";
     }
 }
 
