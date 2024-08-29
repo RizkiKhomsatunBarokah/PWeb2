@@ -260,7 +260,9 @@ $mahasiswa1 = new mahasiswa("Rizki Khomsatun B", "230102022", "Komputer dan Bisn
 echo $mahasiswa1->tampilData();
 ?>
 ```
-(GAMBAR HASIL)
+![image](https://github.com/user-attachments/assets/da0b3dda-6652-488e-b168-6763977ed80d)
+
+
 
 
 ### 2. Membuat Encapsulation
@@ -334,7 +336,9 @@ $mahasiswa1 = new mahasiswa ("Rizki Khomsatun Barokah - ", "230102022 - ", "Komp
 echo $mahasiswa1->getNama() , $mahasiswa1->getNim() , $mahasiswa1->getJurusan();
 ?>
 ```
-(GAMBAR HASIL)
+![image](https://github.com/user-attachments/assets/9639cc9b-ab98-41f4-9de7-32a5d4309f1c)
+
+
 
 ### 3. Membuat Inheritance
 Inheritance biasanya dikenal dengan pewarisan yaitu kelas dapat mewarisi properti dan metode dari kelas lainnya. Dengan inheritance, kita dapat membuat kelas baru yang memiliki semua karakteristik dari kelas yang sudah ada (kelas induk), sambil menambahkan atau mengubah fitur tambahan. Dalam Inheritance kita memiliki sebuah kelas yang menjadi induk dari kelas lain yang menjadi kelas anak. Ciri- ciri dari kelas anak atau biasa dikenal dengan kelas turunan yaitu dengan adanya kata extends yang menandakan bahwa kelas itu merupakan kelas turunan dari kelas sebelumnya. 
@@ -398,6 +402,111 @@ echo "<br/>";
 echo $dosen1->getMatakuliah();
 ?>
 ```
+![image](https://github.com/user-attachments/assets/d9076a64-f0b6-4a50-81e1-704083ba19be)
 
-(GAMBAR HASIL)
+
+### 4. Membuat Polymorphism
+polymorphism merupakan sebuah metode yang sama dapat memiliki implementasi berbeda dalam class yang berbeda. Polymorpshism juga memungkinkan objek-objek dari kelas yang berbeda untuk diakses melalui antarmuka yang sama. Ini berarti metode atau fungsi dapat berperilaku berbeda tergantung pada objek yang memanggilnya. Polymorphism memungkinkan kode lebih fleksibel dan dapat diperluas karena dapat menggunakan metode yang sama pada objek-objek dari kelas yang berbeda. Polymorphism memiliki beberapa keuntungan yaitu salah satunya penyerdehanaan kode, hal ini memudahkan pengembangan dan pemeliharaan kode karena kita tidak perlu menulis kode yang spesifik untuk setiap tipe objek.
+kita bisa membuat sebuah metode dalam Class induk yang dimana Class turunannya akan menggunakan metode tersebut. 
+```php
+class pengguna {
+    public function __construct(){
+    }
+    public function aksesFitur(){
+        return "masuk ke web - ";
+    }
+}
+
+class mahasiswa extends pengguna{
+    public function __construct(){
+    }
+    public function aksesFitur(){
+        return "Lihat Pengguna - ";
+    }
+}
+```
+Dalam Code di atas Class pengguna memiliki function aksesFitur yang digunakan juga oleh kelas turunannya. function aksesFitur yang berada di dalam Class turunan akan menimpa function aksesFitur di Class sebelumnya. 
+
+Berikut full Code dan outputnya
+```php
+<?php
+class pengguna {
+    public function __construct(){
+    }
+    public function aksesFitur(){
+        return "masuk ke web - ";
+    }
+}
+
+class mahasiswa extends pengguna{
+    public function __construct(){
+    }
+    public function aksesFitur(){
+        return "Lihat Pengguna - ";
+    }
+}
+class dosen extends pengguna{
+    public function __construct(){
+    }
+    public function aksesFitur(){
+        return "kembali ke halaman sebelumnya";
+    }
+}
+
+$lihat = [new pengguna(), new mahasiswa(), new dosen()];
+foreach ($lihat as $akses){
+    echo $akses->aksesFitur();
+};
+?>
+```
+![image](https://github.com/user-attachments/assets/eb70ade4-f87d-44cb-890f-340216d5bf26)
+
+
+
+### 5. Membuat Abstraction
+Abstraction merupakan metode yang Menyembunyikan detail implementasi dan hanya menampilkan fungsi penting. Dengan kata lain, abstraction memungkinkan kita untuk fokus pada “apa yang dilakukan” suatu objek, tanpa perlu tahu “bagaimana” cara kerjanya. Abstraction biasanya memiliki tujuan untuk mengurangi kompleksitas, meningkatkan keamanan data, serta memfasilitasi perubahan dan pemeliharaan kode. Abstraction dilakukan dengan mendefinisikan kelas atau antarmuka yang hanya menampilkan metode atau atribut yang relevan bagi pengguna akhir.
+Detail implementasi disembunyikan di balik metode atau atribut ini, sehingga pengguna hanya perlu memahami apa yang objek lakukan, bukan bagaimana cara kerjanya.
+```php
+abstract class pengguna {
+    public function __construct(){
+    }
+    abstract public function aksesFitur();
+}
+```
+Code di atas merupakan Kelas abstrak yaitu kelas yang tidak dapat diinstansiasi secara langsung. Kelas ini sering digunakan sebagai dasar (base class) untuk kelas lain. Kelas abstrak bisa memiliki metode abstrak (metode yang dideklarasikan tanpa implementasi) dan metode konkret (metode yang memiliki implementasi).
+
+Berikut Full Code beserta Outputnya
+```php
+<?php
+abstract class pengguna {
+    //construct
+    public function __construct(){
+    }
+    abstract public function aksesFitur();
+}
+
+class mahasiswa extends pengguna{
+    public function __construct(){
+    }
+    public function aksesFitur(){
+        return "Lihat Pengguna - ";
+    }
+}
+
+class dosen extends pengguna{
+    public function __construct(){
+    }
+    public function aksesFitur(){
+        return "kembali ke halaman sebelumnya";
+    }
+}
+
+$lihat = [new mahasiswa(), new dosen()];
+foreach ($lihat as $akses){
+    echo $akses->aksesFitur();
+}
+?>
+```
+![image](https://github.com/user-attachments/assets/f6ac6296-3712-4dca-9bcd-8485ad02e3fa)
+
 
